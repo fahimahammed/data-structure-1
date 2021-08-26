@@ -1,37 +1,41 @@
 //Binary search
 #include<stdio.h>
+
 int main()
 {
-   int n, middle, first, last, search, array[100];
-   printf("Enter array size: ");
-   scanf("%d",&n);
-   printf("Enter array elements: ");
-   for(int i=0; i<n; i++){
-    scanf("%d",&array[i]);
-   }
-   printf("Enter a number to search: ");
-   scanf("%d",&search);
-   first = 0;
-   last = n - 1;
-   middle = (first+last)/2;
-   while(first<=last){
-    if(array[middle] < search){
-        first = middle + 1;
+    int array[100], n, i, search_num, first, last, mid;
+
+    printf("Enter the array size: ");
+    scanf("%d", &n);
+
+    printf("\nEnter the elements of array: ");
+    for(i=0; i<n; i++){
+        scanf("%d", &array[i]);
     }
-    else if(array[middle] == search){
-        printf("%d is found at index: %d",search, middle+1);
-        break;
+
+    printf("\nEnter a number to search: ");
+    scanf("%d", &search_num);
+
+    first = 0;
+    last = n-1;
+    mid = (first + last)/2;
+
+    while(first <= last){
+        if(array[mid] < search_num){
+            first = mid+1;
+        }
+        else if(array[mid] == search_num){
+            printf("\n%d is found at index %d. \n", search_num, mid);
+            break;
+        }
+        else{
+            last = mid-1;
+        }
+        mid = (first + last)/2;
     }
-    else if(array[last]==search){
-        printf("%d is found at index: %d",search, middle+1);
-        break;
+    printf("%d %d", first, last);
+    if(first > last){
+        printf("\n%d is not found\n", search_num);
     }
-    else{
-        last = middle - 1;
-    }
-    middle = (first+last)/2;
-   }
-   if (first > last)
-      printf("Not found! %d is not present in the list.\n", search);
-   return 0;
+    return 0;
 }
